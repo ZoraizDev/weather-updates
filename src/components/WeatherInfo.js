@@ -68,20 +68,26 @@ const WeatherInfo = ({ current, location, favorites, toggleFavorite, handelSelec
       )}
 
       {/* LOTTIE ANIMATION */}
-      <View className="justify-center items-center">
+      {/* <View className="justify-center items-center">
         <LottieView
           source={require("../assets/lottie/clouds1.json")}
           autoPlay
           loop
           style={{ width: 200, height: 100 }}
         />
-      </View>
+      </View> */}
 
       {/* IMAGE VIEW */}
       <View className="justify-center flex-row">
-        <Image
+        {/* <Image
           source={weatherImages[current?.condition?.text]}
           className="w-32 h-32"
+        /> */}
+        <LottieView
+          source={weatherImages[current?.condition?.text]}
+          autoPlay
+          loop
+          style={{ width: 200, height: 100 }}
         />
       </View>
       {/* TEMPERATURE */}
