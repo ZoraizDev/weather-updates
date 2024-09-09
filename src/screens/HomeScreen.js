@@ -19,6 +19,7 @@ export default function HomeScreen() {
   const [locations, setLocations] = useState([]);
   const [weather, setWeather] = useState({});
   const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState([]);
 
   const handelLocation = (loc) => {
     setLocations([]);
@@ -32,7 +33,18 @@ export default function HomeScreen() {
       setLoading(false);
     });
   };
-
+  const handelSelectedLocation = (name) => {
+    setLocations([]);
+    setShowSearchBar(false);
+    setLoading(true);
+    fetchWeatherForecast({
+      cityName: name,
+      days: "7",
+    }).then((data) => {
+      setWeather(data);
+      setLoading(false);
+    });
+  };
   const handleSearch = (value) => {
     if (value.length > 2) {
       fetchLocations({ cityName: value }).then((data) => setLocations(data));
@@ -60,6 +72,13 @@ export default function HomeScreen() {
       setWeather(data);
       setLoading(false);
     });
+  };
+  const toggleFavorite = (locationName) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.includes(locationName)
+        ? prevFavorites.filter((fav) => fav !== locationName)
+        : [...prevFavorites, locationName]
+    );
   };
 
   const handleDebounce = useCallback(debounce(handleSearch, 1000), []);
@@ -96,7 +115,8 @@ export default function HomeScreen() {
             )}
           </View>
           <View className="flex-1 flex justify-around mx-4 mb-2">
-            <WeatherInfo current={current} location={location} />
+            <WeatherInfo current={current} location={location}favorites={favorites}
+            toggleFavorite={toggleFavorite} handelSelectedLocation={handelSelectedLocation} />
             <ForecastList forecast={weather?.forecast} />
           </View>
         </SafeAreaView>
