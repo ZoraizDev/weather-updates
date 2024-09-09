@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, ScrollView } from "react-native";
-import { weatherImages } from "../constants";
+import { weatherImg } from "../constants";
 import { theme } from "../theme";
 
 
@@ -26,9 +26,10 @@ const ForecastList = ({ forecast }) => {
                 style={{ backgroundColor: theme.bgWhite(0.3) }}
               >
                 <Image
-                  source={weatherImages[days?.day?.condition?.text]}
+                  source={weatherImg[days?.day?.condition?.text]}
                   className="w-12 h-12 ml-5"
                 />
+                 
                 <Text className="text-slate-300 font-semibold text-center py-1">
                   {dayName}
                 </Text>
