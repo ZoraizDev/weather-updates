@@ -18,7 +18,6 @@ const ForecastList = ({ forecast }) => {
             let date = new Date(days.date);
             let options = { weekday: "long" };
             let dayName = date.toLocaleDateString("en-US", options);
-            // const imageSource = weatherImg[days?.day?.condition?.text];
             return (
               <View
                 key={index}
@@ -27,8 +26,7 @@ const ForecastList = ({ forecast }) => {
               >
                 <Image
                     source={{ uri: `https:${days?.day?.condition?.icon}` }}
-                  className="w-12 h-12 ml-5"
-                />
+                  className="w-12 h-12 ml-5"/>
                  
                 <Text className="text-slate-300 font-semibold text-center py-1">
                   {dayName}
