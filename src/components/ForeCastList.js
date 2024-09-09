@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Image, ScrollView } from "react-native";
-import { weatherImg } from "../constants";
 import { theme } from "../theme";
 
 
@@ -19,6 +18,7 @@ const ForecastList = ({ forecast }) => {
             let date = new Date(days.date);
             let options = { weekday: "long" };
             let dayName = date.toLocaleDateString("en-US", options);
+            // const imageSource = weatherImg[days?.day?.condition?.text];
             return (
               <View
                 key={index}
@@ -26,7 +26,7 @@ const ForecastList = ({ forecast }) => {
                 style={{ backgroundColor: theme.bgWhite(0.3) }}
               >
                 <Image
-                  source={weatherImg[days?.day?.condition?.text]}
+                    source={{ uri: `https:${days?.day?.condition?.icon}` }}
                   className="w-12 h-12 ml-5"
                 />
                  
